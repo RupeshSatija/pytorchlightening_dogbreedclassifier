@@ -1,0 +1,26 @@
+{
+    "name": "DogBreed Classifier",
+    "dockerFile": "../Dockerfile",
+    "context": "..",
+    "runArgs": [
+        "--gpus", "all"
+    ],
+    "mounts": [
+        "source=${localWorkspaceFolder}/samples,target=/app/samples,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/predictions,target=/app/predictions,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/data,target=/app/data,type=bind,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/app/.venv/bin/python",
+                "python.pythonPath": "/app/.venv/bin/python"
+            }
+        }
+    },
+    "postCreateCommand": ". /app/.venv/bin/activate && pip install -e ."
+}
