@@ -1,6 +1,11 @@
 # Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
+RUN pip install torch==2.4.0+cpu \
+    torchvision==0.19.0+cpu \
+    --index-url https://download.pytorch.org/whl/cpu \
+    && rm -rf /root/.cache/pip
+
 # Set the working directory in the container
 WORKDIR /app
 
